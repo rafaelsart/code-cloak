@@ -1,0 +1,184 @@
+{
+  "name": "code-cloak",
+  "displayName": "CodeCloak",
+  "version": "0.1.0",
+  "description": "Transform selected code for safe sharing with AI assistants",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeCloak.transformAndCopy",
+        "title": "CodeCloak: Cloak & Copy"
+      },
+      {
+        "command": "codeCloak.transformAndCopyOpenTab",
+        "title": "CodeCloak: Cloak & Copy (Open in New Tab)"
+      },
+      {
+        "command": "codeCloak.addAsKeyword",
+        "title": "CodeCloak: Add as Keyword"
+      },
+      {
+        "command": "codeCloak.showDefaultKeywords",
+        "title": "CodeCloak: Show Default Keywords"
+      },
+      {
+        "command": "codeCloak.decloak",
+        "title": "CodeCloak: Decloak (Restore from Last Cloak)"
+      }
+    ],
+    "configuration": {
+      "title": "CodeCloak",
+      "properties": {
+        "codeCloak.preserveReactHooks": {
+          "type": "boolean",
+          "default": true
+        },
+        "codeCloak.stringFormat": {
+          "type": "string",
+          "enum": [
+            "s1",
+            "str1",
+            "abbreviate"
+          ],
+          "default": "abbreviate"
+        },
+        "codeCloak.copyToClipboard": {
+          "type": "boolean",
+          "default": true
+        },
+        "codeCloak.customKeywords": {
+          "type": "object",
+          "default": {},
+          "description": "(Legacy) Same as keywordsAdd. Prefer keywordsAdd."
+        },
+        "codeCloak.keywordsAdd": {
+          "type": "object",
+          "default": {},
+          "description": "Keywords to add per language. Keys: javascript, typescript, ruby.",
+          "properties": {
+            "javascript": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "JavaScript"
+            },
+            "typescript": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "TypeScript"
+            },
+            "ruby": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Ruby"
+            }
+          }
+        },
+        "codeCloak.keywordsExclude": {
+          "type": "object",
+          "default": {},
+          "description": "Keywords to remove from defaults per language. Keys: javascript, typescript, ruby.",
+          "properties": {
+            "javascript": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Remove from JavaScript"
+            },
+            "typescript": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Remove from TypeScript"
+            },
+            "ruby": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Remove from Ruby"
+            }
+          }
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "codeCloak.transformAndCopy",
+          "when": "true"
+        },
+        {
+          "command": "codeCloak.transformAndCopyOpenTab",
+          "when": "true"
+        },
+        {
+          "command": "codeCloak.addAsKeyword",
+          "when": "true"
+        },
+        {
+          "command": "codeCloak.showDefaultKeywords",
+          "when": "true"
+        },
+        {
+          "command": "codeCloak.decloak",
+          "when": "editorHasSelection"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "codeCloak.transformAndCopy",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "codeCloak.transformAndCopyOpenTab",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "codeCloak.addAsKeyword",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codeCloak.decloak",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "codeCloak.transformAndCopy",
+        "key": "ctrl+alt+shift+c",
+        "mac": "cmd+alt+shift+c"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "package": "npm run compile && npx @vscode/vsce package",
+    "test": "jest"
+  },
+  "dependencies": {
+    "reserved-identifiers": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.74.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.0.0"
+  }
+}
