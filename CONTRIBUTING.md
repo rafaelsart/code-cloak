@@ -4,6 +4,8 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 ## Getting Started
 
+**Requires Node.js 20+** (for `npm run package`)
+
 1. **Clone the repository**
    ```bash
    git clone <repo-url>

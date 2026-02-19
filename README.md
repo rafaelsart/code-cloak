@@ -13,6 +13,8 @@ VS Code extension that transforms selected code for safe sharing with AI assista
 
 ### From VSIX (local build)
 
+**Requires Node.js 20+** (for `npm run package`)
+
 1. In the project directory, run:
    ```bash
    npm install
@@ -208,4 +210,4 @@ npm test
 
 Press **F5** in VS Code to launch the Extension Development Host.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](https://github.com/rafaelsart/code-cloak/blob/main/CONTRIBUTING.md) for contribution guidelines.
