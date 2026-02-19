@@ -4,6 +4,10 @@ VS Code extension that transforms selected code for safe sharing with AI assista
 
 ## Installation
 
+### From GitHub Releases (pre-built VSIX)
+
+Download the latest `.vsix` from [Releases](https://github.com/rafaelsart/code-cloak/releases), then install via **Extensions: Install from VSIX** in the Command Palette.
+
 ### From VS Code Marketplace
 
 1. Open VS Code
